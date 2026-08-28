@@ -27,6 +27,11 @@ public class BookInventoryService : IBookInventoryService
                 "A book with this ISBN already exists.");
         }
 
+        var now = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(
+            DateTime.UtcNow,
+            "SE Asia Standard Time"
+        );
+
         var book = new Book
         {
             ISBN = request.ISBN,
@@ -36,8 +41,10 @@ public class BookInventoryService : IBookInventoryService
             PublisherYear = request.PublisherYear,
             Category = request.Category,
             Location = request.Location,
-
-            AvailabilityStatus = "Avaliable",
+            CreatedAt = now,
+            AvailabilityStatus = "Available",
+            UpdatedAt = now,
+            Details = request.Details
         };
 
         var createdBook = await _bookRepository.AddAsync(book);
@@ -71,7 +78,8 @@ public class BookInventoryService : IBookInventoryService
             PublisherYear = book.PublisherYear,
             Category = book.Category,
             Location = book.Location,
-            AvailabilityStatus = book.AvailabilityStatus
+            AvailabilityStatus = book.AvailabilityStatus,
+            Details = book.Details
         }).ToList();
     }
 
@@ -102,7 +110,7 @@ public class BookInventoryService : IBookInventoryService
         book.PublisherYear = request.PublisherYear;
         book.Category = request.Category;
         book.Location = request.Location;
-
+        book.Details = request.Details;
         book.UpdatedAt = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(
             DateTime.UtcNow,
             "SE Asia Standard Time"
@@ -146,6 +154,7 @@ public class BookInventoryService : IBookInventoryService
             PublisherYear = book.PublisherYear,
             Category = book.Category,
             Location = book.Location,
+            Details = book.Details,
             AvailabilityStatus = book.AvailabilityStatus
         };
     }

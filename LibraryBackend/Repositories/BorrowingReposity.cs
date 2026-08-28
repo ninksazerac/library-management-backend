@@ -27,7 +27,12 @@ public class BorrowingRepository : IBorrowingRepository
 
     public async Task<List<Borrowing>> GetByUserIdAsync(int userId)
     {
-        return await _context.Borrowings.Where(b => b.UserID == userId).ToListAsync();
+        return await _context.Borrowings
+            .Include(b => b.User)
+            .Include(b => b.Book)
+            .Where(b => b.UserID == userId)
+            .OrderByDescending(b => b.BorrowedAt)
+            .ToListAsync();
     }
 
     public async Task UpdateAsync(Borrowing borrowing)

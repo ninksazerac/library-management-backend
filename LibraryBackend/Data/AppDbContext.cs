@@ -12,7 +12,7 @@ public class AppDbContext : DbContext
 
     public DbSet<User> Users { get; set; }
     public DbSet<Book> Books { get; set; }
-    public DbSet<Borrowing> Borrowings {get; set;}
+    public DbSet<Borrowing> Borrowings { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -94,6 +94,10 @@ public class AppDbContext : DbContext
 
             entity.Property(b => b.UpdatedAt)
                 .HasColumnType("datetime2")
+                .IsRequired();
+
+            entity.Property(b => b.Details)
+                .HasColumnType("nvarchar(max)")
                 .IsRequired();
         });
 

@@ -13,4 +13,5 @@ public class Book
     public string AvailabilityStatus { get; set; } = string.Empty;
     public DateTime CreatedAt { get; set; }
     public DateTime? UpdatedAt { get; set; }
+    public string Details { get; set; } = string.Empty;
 }

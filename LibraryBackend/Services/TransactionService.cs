@@ -24,17 +24,14 @@ public class TransactionService : ITransactionService
             new TransactionHistoryResponseDto
             {
                 BorrowingID = b.BorrowingID,
-
                 UserID = b.UserID,
                 Username = b.User.Username,
-
                 BookID = b.BookID,
                 ISBN = b.Book.ISBN,
                 BookTitle = b.Book.Title,
-
                 BorrowedAt = b.BorrowedAt,
+                DueAt = b.DueAt,
                 ReturnedAt = b.ReturnedAt,
-
                 Status = b.Status
             }).ToList();
     }
@@ -50,17 +47,14 @@ public class TransactionService : ITransactionService
             new TransactionHistoryResponseDto
             {
                 BorrowingID = b.BorrowingID,
-
                 UserID = b.UserID,
                 Username = b.User.Username,
-
                 BookID = b.BookID,
                 ISBN = b.Book.ISBN,
                 BookTitle = b.Book.Title,
-
                 BorrowedAt = b.BorrowedAt,
+                DueAt = b.DueAt,
                 ReturnedAt = b.ReturnedAt,
-
                 Status = b.Status
             }).ToList();
     }

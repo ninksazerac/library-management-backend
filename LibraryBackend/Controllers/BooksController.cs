@@ -47,17 +47,26 @@ public class BooksController : ControllerBase
 
     [Authorize(Roles = "Administrator")]
     [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateBook(int id, UpdateBookRequestDto request)
+    public async Task<IActionResult> UpdateBook(
+    int id,
+    UpdateBookRequestDto request)
     {
-        var result = await _bookService.UpdateBookAsync(id, request);
-        if (result == null)
+        try
+        {
+            var result = await _bookService.UpdateBookAsync(
+                id,
+                request
+            );
+
+            return Ok(result);
+        }
+        catch (KeyNotFoundException ex)
         {
             return NotFound(new
             {
-                message = "Book not found."
+                message = ex.Message
             });
         }
-        return Ok(result);
     }
 
     [Authorize(Roles = "Administrator")]

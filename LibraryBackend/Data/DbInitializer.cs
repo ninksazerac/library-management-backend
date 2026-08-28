@@ -19,12 +19,23 @@ public static class DbInitializer
         }
 
         if (!await context.Users.AnyAsync(
-            u => u.Username == "user"))
+            u => u.Username == "user1"))
         {
             context.Users.Add(new User
             {
-                Username = "user",
-                PasswordHash = BCrypt.Net.BCrypt.HashPassword("User@123"),
+                Username = "user1",
+                PasswordHash = BCrypt.Net.BCrypt.HashPassword("User@111"),
+                Role = "EndUser"
+            });
+        }
+
+        if (!await context.Users.AnyAsync(
+            u => u.Username == "user2"))
+        {
+            context.Users.Add(new User
+            {
+                Username = "user2",
+                PasswordHash = BCrypt.Net.BCrypt.HashPassword("User@222"),
                 Role = "EndUser"
             });
         }

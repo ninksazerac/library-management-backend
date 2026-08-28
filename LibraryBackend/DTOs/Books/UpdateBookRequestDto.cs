@@ -1,4 +1,5 @@
 namespace LibraryBackend.DTOs.Books;
+
 public class UpdateBookRequestDto
 {
     public string ISBN { get; set; } = string.Empty;
@@ -8,4 +9,5 @@ public class UpdateBookRequestDto
     public int PublisherYear { get; set; }
     public string Category { get; set; } = string.Empty;
     public string Location { get; set; } = string.Empty;
+    public string Details { get; set; } = string.Empty;
 }

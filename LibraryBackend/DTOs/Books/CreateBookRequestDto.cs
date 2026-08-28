@@ -28,4 +28,6 @@ public class CreateBookRequestDto
     [Required]
     [MaxLength(100)]
     public string Location { get; set; } = string.Empty;
+
+    public string Details { get; set; } = string.Empty;
 }
